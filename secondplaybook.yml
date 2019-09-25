@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+  become: true
+  tasks: 
+    - name: copying the scripts
+      copy: src=test.sh dest=/var/tmp/test.sh owner=root group=sys mode=775
+    
+    - name: executing the scripts
+      shell: /var/tmp/test.sh
+
+
