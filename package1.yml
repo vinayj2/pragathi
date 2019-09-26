@@ -1,0 +1,15 @@
+---
+
+- hosts: localhost
+  become: true
+  vars:
+    pkg: "httpd"
+
+  tasks:
+    - name: installation of "{(pkg)}" package
+      yum: name="{(pkg)}" state=present
+      register: pkg_install
+
+    - name: starting "{(pkg)}" service
+      service: name="{(pkg)}" state=started enabled=yes
+      when: pkg_installation|success
